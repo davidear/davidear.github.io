@@ -3,17 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hexo</title>
+  <title>Optional， Optional Casting的一些理解 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="我不知道该翻译什么好，请原谅使用了一些苹果的命名，应该不会造成影响的：）
+Optionals可选类型是什么？在Objective-C中，任意一个类型在有值的时候就是这个类型的值，而没值的时候，默认值就是nil。举个例子：
+NSString *abc = [[NSString alloc] init];  //这个时候,abc的值为nil，实际表示的意思是abc的存指针的内存地址里面为0值，不扯远了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Optional， Optional Casting的一些理解">
+<meta property="og:url" content="http://yoursite.com/2015/07/11/Optional和Optional Casting的一些理解/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description">
+<meta property="og:description" content="我不知道该翻译什么好，请原谅使用了一些苹果的命名，应该不会造成影响的：）
+Optionals可选类型是什么？在Objective-C中，任意一个类型在有值的时候就是这个类型的值，而没值的时候，默认值就是nil。举个例子：
+NSString *abc = [[NSString alloc] init];  //这个时候,abc的值为nil，实际表示的意思是abc的存指针的内存地址里面为0值，不扯远了">
+<meta property="og:updated_time" content="2015-07-10T18:38:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Optional， Optional Casting的一些理解">
+<meta name="twitter:description" content="我不知道该翻译什么好，请原谅使用了一些苹果的命名，应该不会造成影响的：）
+Optionals可选类型是什么？在Objective-C中，任意一个类型在有值的时候就是这个类型的值，而没值的时候，默认值就是nil。举个例子：
+NSString *abc = [[NSString alloc] init];  //这个时候,abc的值为nil，实际表示的意思是abc的存指针的内存地址里面为0值，不扯远了">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -59,35 +66,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-abc" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/07/11/abc/" class="article-date">
-  <time datetime="2015-07-10T17:22:40.000Z" itemprop="datePublished">2015-07-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/07/11/abc/" data-id="cibxyxf0w00024kmjpsqbo775" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Optional和Optional Casting的一些理解" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Optional和Optional Casting的一些理解" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/07/11/Optional和Optional Casting的一些理解/" class="article-date">
   <time datetime="2015-07-10T16:35:54.000Z" itemprop="datePublished">2015-07-11</time>
@@ -100,8 +79,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/11/Optional和Optional Casting的一些理解/">Optional， Optional Casting的一些理解</a>
+    <h1 class="article-title" itemprop="name">
+      Optional， Optional Casting的一些理解
     </h1>
   
 
@@ -170,92 +149,29 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-MY-NEW-POST" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/06/27/MY-NEW-POST/" class="article-date">
-  <time datetime="2015-06-26T17:28:24.000Z" itemprop="datePublished">2015-06-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2015/07/11/abc/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/06/27/MY-NEW-POST/">MY NEW POST</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
+          (no title)
         
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/06/27/MY-NEW-POST/" data-id="cibxyxeyz00004kmjfwo06w67" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
+      </div>
+    </a>
+  
+  
+    <a href="/2015/06/27/MY-NEW-POST/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MY NEW POST</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/06/27/hello-world/" class="article-date">
-  <time datetime="2015-06-26T17:13:16.000Z" itemprop="datePublished">2015-06-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/06/27/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/06/27/hello-world/" data-id="cibxyxf0i00014kmj30iyyjzv" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-  
 </section>
         
           <aside id="sidebar">

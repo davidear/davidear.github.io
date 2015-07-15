@@ -77,7 +77,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/07/11/abc/" data-id="cibxz17y000027emjdjsmj0yq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/07/11/abc/" data-id="cic4dzbgj0002g4mj9y9qc4os" class="article-share-link">Share</a>
       
       
     </footer>
@@ -153,18 +153,25 @@
 <li><p>这里的let也可以用var，没有问题，但基本上都是使用let</p>
 </li>
 </ol>
-<h1 id="使用as?_和_as">使用as? 和 as</h1><p>这两个东西是主要用于cast（类型转换）。</p>
+<h1 id="使用as?_,_as,_as!">使用as? , as, as!</h1><p>这两个东西是主要用于cast（类型转换）。</p>
 <p>举例：</p>
 <p>FirstViewController继承自UIViewController，并有自己的一个变量topic</p>
 <p>class FirstViewController: UIViewController {<br>    var topic: String! = nil<br>}</p>
-<p>在某个方法里，比如在appDelegate里的方法didFinishLaunchingWithOptions里，实现：<br>let newVC = FirstViewController()</p>
-<p>window?.rootViewController = newVC</p>
-<p>let theVC = window?.rootViewController as? My</p>
+<p>在某个方法里</p>
+<p>let myVC = FirstViewController()<br>presentViewController(myVC, animated: true, completion: nil)</p>
+<p>在使用presentedViewController属性来获取这个控制器，并访问topic属性时，怎么确定这个presentedViewController就是FirstViewController类型呢？</p>
+<p>这个时候可以使用as?如下：<br>let myVC = controller.presentedViewController as? FirstViewController<br>myVC?.topic = “new topic”</p>
+<p>这的as?试图将该presentedViewController转成FirstViewController类型，当不成功时，返回nil。</p>
+<p><strong>as?使用的地方就是如果类型转换有可能失败的时候</strong></p>
+<p><strong>as在类型转换一定会成功的时候使用, as!与as类似，也是在一定成功时使用</strong></p>
+<p><strong>补充：在对已知的optional类型进行类型转换的时候，应该使用as!</strong></p>
+<p>一个特例：<br>在switch语句中不论是否有可能失败，总是使用as，因为switch中的判断相当于解包，已经过滤掉失败的可能：</p>
+<p>switch age {<br>    case let ageValue as Int:<br>        println(“(ageValue)”)<br>    case let ageValue as Double:<br>        println(“(ageValue)”)<br>    default: break<br>} </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/07/10/Optional和Optional Casting的一些理解/" data-id="cibxz17y300037emjq5u2eu5s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/07/10/Optional和Optional Casting的一些理解/" data-id="cic4dzbgm0003g4mj2cqpuqzn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -200,7 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/06/27/MY-NEW-POST/" data-id="cibxz17wz00007emj3sw06tcp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/06/27/MY-NEW-POST/" data-id="cic4dzbfl0000g4mjfyvgi6gz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -245,7 +252,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/06/27/hello-world/" data-id="cibxz17xw00017emjeaih7nzz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/06/27/hello-world/" data-id="cic4dzbgf0001g4mjsrm6l6gg" class="article-share-link">Share</a>
       
       
     </footer>

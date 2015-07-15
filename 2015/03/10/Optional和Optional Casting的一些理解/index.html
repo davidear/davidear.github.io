@@ -15,7 +15,7 @@ NSString *abc = [[NSString alloc] init];  //这个时候,abc的值为nil，实�
 <meta property="og:description" content="我不知道该翻译什么好，请原谅使用了一些苹果的命名，应该不会造成影响的：）
 Optionals可选类型是什么？在Objective-C中，任意一个类型在有值的时候就是这个类型的值，而没值的时候，默认值就是nil。举个例子：
 NSString *abc = [[NSString alloc] init];  //这个时候,abc的值为nil，实际表示的意思是abc的存指针的内存地址里面为0值，不扯远了">
-<meta property="og:updated_time" content="2015-07-15T13:48:43.000Z">
+<meta property="og:updated_time" content="2015-07-15T14:08:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Optional， Optional Casting的一些理解">
 <meta name="twitter:description" content="我不知道该翻译什么好，请原谅使用了一些苹果的命名，应该不会造成影响的：）
@@ -99,36 +99,44 @@ NSString *abc = [[NSString alloc] init];  //这个时候,abc的值为nil，实�
         <p>我不知道该翻译什么好，请原谅使用了一些苹果的命名，应该不会造成影响的：）</p>
 <h2 id="Optionals可选类型是什么？">Optionals可选类型是什么？</h2><p>在Objective-C中，任意一个类型在有值的时候就是这个类型的值，而没值的时候，默认值就是nil。举个例子：</p>
 <p>NSString *abc = [[NSString alloc] init];  //这个时候,abc的值为nil，实际表示的意思是abc的存指针的内存地址里面为0值，不扯远了:)</p>
-<p>abc = @”hello,world”;                     //abc的值为hello，world</p>
-<p>这样的情况在Objective-C中太常见了，搞OC的完全不会觉得有什么问题。但是我们这里应该看到一个事实：<code>nil实际上并不是一个字符串</code>，对吧。说了这么多废话就只想说明这一句话。</p>
+<pre><code><span class="keyword">abc</span> = @<span class="string">"hello,world"</span>;   //<span class="keyword">abc</span>的值为hello，world
+</code></pre><p>这样的情况在Objective-C中太常见了，搞OC的完全不会觉得有什么问题。但是我们这里应该看到一个事实：<code>nil实际上并不是一个字符串</code>，对吧。说了这么多废话就只想说明这一句话。</p>
 <p>然后我们再说一个概念，<code>swift是严格类型语言，也就是说，一个类型，就应该只包括这个类型的值</code>。所以hello，world是NSString，nil就不是NSString，他们不是一个层面的东西，都放到NSString里面就不合适了。</p>
 <p>理解了概念之后就说到Optional可选类型了。很简单，OC里面把nil和字符串放混到一起是有理由的，因为nil和有值这两种情况是的的确确会存在在程序当中的。而swift严格类型，不能混到一起，怎么办？那就搞个Optional可选类型啦！</p>
 <p>Optional可选类型的实质：</p>
-<p>enum Optional : NilLiteralConvertible {</p>
-<p>  case None</p>
-<p>  case Some(T)</p>
-<p> }</p>
-<p>如上，<code>Optional可选类型实际上就是一个枚举</code></p>
+<pre><code><span class="keyword">enum</span> <span class="type">Optional</span> : NilLiteralConvertible {
+    <span class="keyword">case</span> <span class="type">None</span>
+    <span class="keyword">case</span> Some(T)
+    }
+</code></pre><p>如上，<code>Optional可选类型实际上就是一个枚举</code></p>
 <p>是不是有点感觉了，既然一个类里面装不了他们，那就搞个枚举把这几个东西包起来，不就ok了？</p>
 <p>可选类型使用？紧跟着数据类型来告诉编译器这个变量可能有值也可能没值,如下:</p>
-<p>var age: Int? = nil<br>var account: Int? = 55</p>
-<p>相当于：<br>var account: Optional<int> = Optional<int>(55)</int></int></p>
-<p>多问一句，NSString? 和 NSString! 是不是同一个类型？</p>
+<pre><code><span class="variable"><span class="keyword">var</span> age</span>: <span class="typename">Int</span>? = nil
+<span class="variable"><span class="keyword">var</span> account</span>: <span class="typename">Int</span>? = <span class="number">55</span>
+</code></pre><p>相当于：</p>
+<pre><code>var account: <span class="type">Optional</span>&lt;<span class="built_in">Int</span>&gt; = <span class="type">Optional</span>&lt;<span class="built_in">Int</span>&gt;(<span class="number">55</span>)
+</code></pre><p>多问一句，NSString? 和 NSString! 是不是同一个类型？</p>
 <p>不是！！！</p>
 <p>不同类型的变量可以相互直接赋值么？</p>
 <p>不可以！！！</p>
 <h2 id="如何使用_?_和_!">如何使用 ? 和 !</h2><p>举个例子，我们在OC中UIViewController的一个常用属性：navigationController。相信初学OC的人应该遇到过这样一个报错：</p>
-<p>[self.navigationController pushViewController:secondViewController, animated:YES];</p>
-<p>这里有一种可能的情况就是忘了初始化UINavigationController来装这个self，所以这个self根本就没有navigationController，也就是self.navigationController = nil。让一个nil执行push方法，当然报错了。</p>
-<p>是不是有点感觉了，看看swift里面的做法：<br>controller.navigationController?.pushViewController(secondViewController, animated: true)</p>
-<p>这里的 ? 就表示这navigationController可能是个可选类型，可能有值可能为nil。（这里必须插一条规则：<code>可选类型在执行方法时，如果为nil时，该条语句不执行</code>）</p>
+<pre><code>[<span class="keyword">self.navigationController </span><span class="keyword">pushViewController:secondViewController, </span>animated:YES]<span class="comment">;</span>
+</code></pre><p>这里有一种可能的情况就是忘了初始化UINavigationController来装这个self，所以这个self根本就没有navigationController，也就是self.navigationController = nil。让一个nil执行push方法，当然报错了。</p>
+<p>是不是有点感觉了，看看swift里面的做法：</p>
+<pre><code><span class="tag">controller</span><span class="class">.navigationController</span>?<span class="class">.pushViewController</span>(<span class="tag">secondViewController</span>, <span class="rule"><span class="attribute">animated</span>:<span class="value"> true)</span></span>
+</code></pre><p>这里的 ? 就表示这navigationController可能是个可选类型，可能有值可能为nil。（这里必须插一条规则：<code>可选类型在执行方法时，如果为nil时，该条语句不执行</code>）</p>
 <p>是不是感觉swift这样做的好处了？根据这一条规则，有值，代码正常跑，没值也不会crash！这也就是swift为什么这么整这一套的原因之一了。</p>
-<p>而当我们确定这个navigationController在被使用的时候一定有值的，那么写成这样也是可以的：<br>controller.navigationController!.pushViewController(secondViewController, animated: true)</p>
-<p>！紧跟着变量后面，就相当于告诉编译器这个变量是一定有值的，别多操心，就按我说的去跑。</p>
+<p>而当我们确定这个navigationController在被使用的时候一定有值的，那么写成这样也是可以的：</p>
+<pre><code><span class="tag">controller</span><span class="class">.navigationController</span>!<span class="class">.pushViewController</span>(<span class="tag">secondViewController</span>, <span class="rule"><span class="attribute">animated</span>:<span class="value"> true)</span></span>
+</code></pre><p>！紧跟着变量后面，就相当于告诉编译器这个变量是一定有值的，别多操心，就按我说的去跑。</p>
 <p>发散想一下，不crash很好，但是如果我想在没有值不执行该方法的时候弄个提示框出来，怎么整？</p>
 <h2 id="使用”if_let”">使用”if let”</h2><p>先看代码：</p>
-<p>if let nav = controller.navigationController {<br>    nav.pushViewController(secondViewController, animated: true)<br>} else {<br>    //show an alert ot something else<br>}</p>
-<p>使用if let的这一套写法做了次“拆包”，这里说几点：</p>
+<pre><code><span class="keyword">if</span> <span class="built_in">let</span> nav = controller.navigationController {
+    nav.pushViewController<span class="params">(secondViewController, animated: <span class="literal">true</span>)</span>
+} <span class="keyword">else</span> {
+<span class="comment">//show an alert ot something else</span>
+}
+</code></pre><p>使用if let的这一套写法做了次“拆包”，这里说几点：</p>
 <ol>
 <li><p>这段语句不用解释都能看得懂，所以不解释了</p>
 </li>
@@ -143,18 +151,30 @@ NSString *abc = [[NSString alloc] init];  //这个时候,abc的值为nil，实�
 <h2 id="使用as?_,_as,_as!">使用as? , as, as!</h2><p>这两个东西是主要用于cast（类型转换）。</p>
 <p>举例：</p>
 <p>FirstViewController继承自UIViewController，并有自己的一个变量topic</p>
-<p>class FirstViewController: UIViewController {<br>    var topic: String! = nil<br>}</p>
-<p>在某个方法里</p>
-<p>let myVC = FirstViewController()<br>presentViewController(myVC, animated: true, completion: nil)</p>
-<p>在使用presentedViewController属性来获取这个控制器，并访问topic属性时，怎么确定这个presentedViewController就是FirstViewController类型呢？</p>
-<p>这个时候可以使用as?如下：<br>let myVC = controller.presentedViewController as? FirstViewController<br>myVC?.topic = “new topic”</p>
-<p>这的as?试图将该presentedViewController转成FirstViewController类型，当不成功时，返回nil。</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">FirstViewController</span>: <span class="typename">UIViewController {</span></span>
+    <span class="variable"><span class="keyword">var</span> topic</span>: String! = nil
+}
+</code></pre><p>在某个方法里</p>
+<pre><code>let myVC = FirstViewController<span class="list">()</span>
+presentViewController<span class="list">(<span class="keyword">myVC</span>, animated: true, 
+completion: <span class="literal">nil</span>)</span>
+</code></pre><p>在使用presentedViewController属性来获取这个控制器，并访问topic属性时，怎么确定这个presentedViewController就是FirstViewController类型呢？</p>
+<p>这个时候可以使用as?如下：</p>
+<pre><code><span class="keyword">let</span> <span class="variable">myVC =</span> controller.presentedViewController as? FirstViewController
+myVC?.<span class="variable">topic =</span> <span class="string">"new topic"</span>
+</code></pre><p>这的as?试图将该presentedViewController转成FirstViewController类型，当不成功时，返回nil。</p>
 <p><code>as?使用的地方就是如果类型转换有可能失败的时候</code></p>
 <p><code>as在类型转换一定会成功的时候使用, as!与as类似，也是在一定成功时使用</code></p>
 <p><code>补充：在对已知的optional类型进行类型转换的时候，应该使用as!</code></p>
 <p>一个特例：<br>在switch语句中不论是否有可能失败，总是使用as，因为switch中的判断相当于解包，已经过滤掉失败的可能：</p>
-<p>switch age {<br>    case let ageValue as Int:<br>        println(“(ageValue)”)<br>    case let ageValue as Double:<br>        println(“(ageValue)”)<br>    default: break<br>} </p>
-
+<pre><code><span class="keyword">switch</span> age {
+    <span class="keyword">case</span> <span class="keyword">let</span> ageValue <span class="keyword">as</span> <span class="type">Int</span>:
+        <span class="built_in">println</span>(<span class="string">"<span class="subst">\(ageValue)</span>"</span>)
+    <span class="keyword">case</span> <span class="keyword">let</span> ageValue <span class="keyword">as</span> <span class="type">Double</span>:
+        <span class="built_in">println</span>(<span class="string">"<span class="subst">\(ageValue)</span>"</span>)
+    <span class="keyword">default</span>: <span class="keyword">break</span>
+} 
+</code></pre>
       
     </div>
     <footer class="article-footer">

@@ -15,7 +15,7 @@ NSString *abc = [[NSString alloc] init];  //这个时候,abc的值为nil，实�
 <meta property="og:description" content="我不知道该翻译什么好，请原谅使用了一些苹果的命名，应该不会造成影响的：）
 Optionals可选类型是什么？在Objective-C中，任意一个类型在有值的时候就是这个类型的值，而没值的时候，默认值就是nil。举个例子：
 NSString *abc = [[NSString alloc] init];  //这个时候,abc的值为nil，实际表示的意思是abc的存指针的内存地址里面为0值，不扯远了">
-<meta property="og:updated_time" content="2015-07-15T17:45:19.000Z">
+<meta property="og:updated_time" content="2015-07-15T17:53:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Optional， Optional Casting的一些理解">
 <meta name="twitter:description" content="我不知道该翻译什么好，请原谅使用了一些苹果的命名，应该不会造成影响的：）
@@ -128,33 +128,33 @@ NSString *abc = [[NSString alloc] init];  //这个时候,abc的值为nil，实�
 <p>发散想一下，不crash很好，但是如果我想在没有值不执行该方法的时候弄个提示框出来，怎么整？</p>
 <h2 id="使用”if_let”">使用”if let”</h2><p>先看代码：</p>
 <figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="built_in">let</span> nav = controller.navigationController &#123;</span><br><span class="line">	nav.pushViewController<span class="params">(secondViewController, animated: <span class="literal">true</span>)</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   <span class="comment">//show an alert ot something else</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> controller.navigationController == <span class="keyword">nil</span> <span class="comment">&#123;   &#125;</span></span><br></pre></td></tr></table></figure>
 <p>使用if let的这一套写法做了次“拆包”，这里说几点：</p>
 <ol>
 <li><p>这段语句不用解释都能看得懂，所以不解释了</p>
 </li>
-<li><p>为什么要这样些，为什么不可以下面那样写？可以，语法上没有问题，但是兄弟，别问那么多了，这是个固定路数，先记下来，以后遇到这种情况就这么整。</p>
+<li><p>为什么要这样些，为什么不可以上面第二段那样写？可以，语法上没有问题，但是兄弟，别问那么多了，这是个固定路数，先记下来，以后遇到这种情况就这么整。</p>
+</li>
+<li><p>这里的nav在这一个管用套路里面，就直接等同于UINavigationController类型了，而不是UINavigationController?类型。</p>
+</li>
+<li><p>这里的let也可以用var，没有问题，但基本上都是使用let</p>
 </li>
 </ol>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">if</span> controller.navigationController == <span class="keyword">nil</span> <span class="decorator">&#123;.....&#125;</span></span><br><span class="line"></span><br><span class="line">```	</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>. 这里的nav在这一个管用套路里面，就直接等同于<span class="type">UINavigationController</span>类型了，而不是<span class="type">UINavigationController</span>?类型。</span><br><span class="line"></span><br><span class="line"><span class="number">4</span>. 这里的<span class="keyword">let</span>也可以用<span class="keyword">var</span>，没有问题，但基本上都是使用<span class="keyword">let</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 使用as? , as, as!</span></span><br><span class="line">这两个东西是主要用于<span class="keyword">cast</span>（类型转换）。</span><br><span class="line"></span><br><span class="line">举例：</span><br><span class="line"></span><br><span class="line"><span class="type">FirstViewController</span>继承自<span class="type">UIViewController</span>，并有自己的一个变量topic</span><br></pre></td></tr></table></figure>
-<pre><code><span class="class"><span class="keyword">class</span> <span class="title">FirstViewController</span>: <span class="typename">UIViewController {</span></span>
-    <span class="variable"><span class="keyword">var</span> topic</span>: String! = nil
-}
-</code></pre><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">在某个方法里</span><br></pre></td></tr></table></figure>
-<pre><code>let myVC = FirstViewController<span class="list">()</span>
-presentViewController<span class="list">(<span class="keyword">myVC</span>, animated: true, 
-completion: <span class="literal">nil</span>)</span>
-</code></pre><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在使用presentedViewController属性来获取这个控制器，并访问topic属性时，怎么确定这个presentedViewController就是FirstViewController类型呢？</span><br><span class="line"></span><br><span class="line">这个时候可以使用<span class="keyword">as</span>?如下：</span><br></pre></td></tr></table></figure>
-<pre><code><span class="keyword">let</span> <span class="variable">myVC =</span> controller.presentedViewController as? FirstViewController
-myVC?.<span class="variable">topic =</span> <span class="string">"new topic"</span>
-</code></pre><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">这的as?试图将该presentedViewController转成FirstViewController类型，当不成功时，返回nil。</span><br><span class="line"></span><br><span class="line">`<span class="javascript"><span class="keyword">as</span>?使用的地方就是如果类型转换有可能失败的时候</span>`</span><br><span class="line"></span><br><span class="line">`<span class="javascript"><span class="keyword">as</span>在类型转换一定会成功的时候使用, <span class="keyword">as</span>!与<span class="keyword">as</span>类似，也是在一定成功时使用</span>`</span><br><span class="line"></span><br><span class="line">`<span class="javascript">补充：在对已知的optional类型进行类型转换的时候，应该使用<span class="keyword">as</span>!</span>`</span><br><span class="line"></span><br><span class="line">一个特例：</span><br><span class="line">在<span class="keyword">switch</span>语句中不论是否有可能失败，总是使用as，因为<span class="keyword">switch</span>中的判断相当于解包，已经过滤掉失败的可能：</span><br></pre></td></tr></table></figure>
-<pre><code><span class="keyword">switch</span> age {
-    <span class="keyword">case</span> <span class="keyword">let</span> ageValue <span class="keyword">as</span> <span class="type">Int</span>:
-        <span class="built_in">println</span>(<span class="string">"<span class="subst">\(ageValue)</span>"</span>)
-    <span class="keyword">case</span> <span class="keyword">let</span> ageValue <span class="keyword">as</span> <span class="type">Double</span>:
-        <span class="built_in">println</span>(<span class="string">"<span class="subst">\(ageValue)</span>"</span>)
-    <span class="keyword">default</span>: <span class="keyword">break</span>
-} 
-</code></pre><p>```</p>
+<h2 id="使用as?_,_as,_as!">使用as? , as, as!</h2><p>这两个东西是主要用于cast（类型转换）。</p>
+<p>举例：</p>
+<p>FirstViewController继承自UIViewController，并有自己的一个变量topic</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FirstViewController</span>: <span class="typename">UIViewController &#123;</span></span></span><br><span class="line">	<span class="variable"><span class="keyword">var</span> topic</span>: String! = nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在某个方法里</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let myVC = FirstViewController<span class="list">()</span></span><br><span class="line">presentViewController<span class="list">(<span class="keyword">myVC</span>, animated: true, </span><br><span class="line">completion: <span class="literal">nil</span>)</span></span><br></pre></td></tr></table></figure>
+<p>在使用presentedViewController属性来获取这个控制器，并访问topic属性时，怎么确定这个presentedViewController就是FirstViewController类型呢？</p>
+<p>这个时候可以使用as?如下：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">myVC =</span> controller.presentedViewController as? FirstViewController</span><br><span class="line">myVC?.<span class="variable">topic =</span> <span class="string">"new topic"</span></span><br></pre></td></tr></table></figure>
+<p>这的as?试图将该presentedViewController转成FirstViewController类型，当不成功时，返回nil。</p>
+<p><code>as?使用的地方就是如果类型转换有可能失败的时候</code></p>
+<p><code>as在类型转换一定会成功的时候使用, as!与as类似，也是在一定成功时使用</code></p>
+<p><code>补充：在对已知的optional类型进行类型转换的时候，应该使用as!</code></p>
+<p>一个特例：<br>在switch语句中不论是否有可能失败，总是使用as，因为switch中的判断相当于解包，已经过滤掉失败的可能：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> age &#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="keyword">let</span> ageValue <span class="keyword">as</span> <span class="type">Int</span>:</span><br><span class="line">		<span class="built_in">println</span>(<span class="string">"<span class="subst">\(ageValue)</span>"</span>)</span><br><span class="line">	<span class="keyword">case</span> <span class="keyword">let</span> ageValue <span class="keyword">as</span> <span class="type">Double</span>:</span><br><span class="line">		<span class="built_in">println</span>(<span class="string">"<span class="subst">\(ageValue)</span>"</span>)</span><br><span class="line">	<span class="keyword">default</span>: <span class="keyword">break</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>

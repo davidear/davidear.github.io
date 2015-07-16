@@ -93,7 +93,8 @@
       
         <p>我不知道该翻译什么好，请原谅使用了一些苹果的命名，应该不会造成影响的：）</p>
 <h2 id="Optionals可选类型是什么？">Optionals可选类型是什么？</h2><p>在Objective-C中，任意一个类型在有值的时候就是这个类型的值，而没值的时候，默认值就是nil。举个例子：</p>
-<p>NSString *abc = [[NSString alloc] init];  //这个时候,abc的值为nil，实际表示的意思是abc的存指针的内存地址里面为0值，不扯远了:)</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSString *abc = <span class="comment">[<span class="comment">[NSString alloc]</span> init]</span>;</span><br></pre></td></tr></table></figure>
+<p>//这个时候,abc的值为nil，实际表示的意思是abc的存指针的内存地址里面为0值，不扯远了:)</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abc</span> = @<span class="string">"hello,world"</span>;   //<span class="keyword">abc</span>的值为hello，world</span><br></pre></td></tr></table></figure>
 <p>这样的情况在Objective-C中太常见了，搞OC的完全不会觉得有什么问题。但是我们这里应该看到一个事实：<code>nil实际上并不是一个字符串</code>，对吧。说了这么多废话就只想说明这一句话。</p>
 <p>然后我们再说一个概念，<code>swift是严格类型语言，也就是说，一个类型，就应该只包括这个类型的值</code>。所以hello，world是NSString，nil就不是NSString，他们不是一个层面的东西，都放到NSString里面就不合适了。</p>

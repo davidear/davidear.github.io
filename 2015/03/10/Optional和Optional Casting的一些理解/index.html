@@ -17,7 +17,7 @@ Optionals可选类型是什么？在Objective-C中，任意一个类型在有值
 Optionals可选类型是什么？在Objective-C中，任意一个类型在有值的时候就是这个类型的值，而没值的时候，默认值就是nil。举个例子：
 1NSString *abc = [[NSString alloc] init];
 //这个时候,abc的值为nil，实际表示的意思是abc的存指针的内存地址里面为0值，不扯远了">
-<meta property="og:updated_time" content="2015-07-15T17:57:23.000Z">
+<meta property="og:updated_time" content="2015-07-23T17:16:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Optional， Optional Casting的一些理解">
 <meta name="twitter:description" content="我不知道该翻译什么好，请原谅使用了一些苹果的命名，应该不会造成影响的：）
@@ -147,7 +147,7 @@ Optionals可选类型是什么？在Objective-C中，任意一个类型在有值
 <h2 id="使用as?_,_as,_as!">使用as? , as, as!</h2><p>这两个东西是主要用于cast（类型转换）。</p>
 <p>举例：</p>
 <p>FirstViewController继承自UIViewController，并有自己的一个变量topic</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FirstViewController</span>: <span class="typename">UIViewController &#123;</span></span></span><br><span class="line">	<span class="variable"><span class="keyword">var</span> topic</span>: String! = nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FirstViewController</span>: <span class="typename">UIViewController &#123;</span></span></span><br><span class="line">	<span class="variable"><span class="keyword">var</span> topic</span>: String? = nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在某个方法里</p>
 <figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let myVC = FirstViewController<span class="list">()</span></span><br><span class="line">presentViewController<span class="list">(<span class="keyword">myVC</span>, animated: true, </span><br><span class="line">completion: <span class="literal">nil</span>)</span></span><br></pre></td></tr></table></figure>
 <p>在使用presentedViewController属性来获取这个控制器，并访问topic属性时，怎么确定这个presentedViewController就是FirstViewController类型呢？</p>
@@ -163,13 +163,27 @@ Optionals可选类型是什么？在Objective-C中，任意一个类型在有值
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/03/10/Optional和Optional Casting的一些理解/" data-id="cic52igj100003gmj11ubhh6c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/03/10/Optional和Optional Casting的一些理解/" data-id="cicgig7x700034ymj95ajtq0i" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
     
+<nav id="article-nav">
+  
+    <a href="/2015/03/17/OC到swift的迁移/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          OC到swift的迁移
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
   
 </article>
 
@@ -182,7 +196,7 @@ Optionals可选类型是什么？在Objective-C中，任意一个类型在有值
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/swift/">swift</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/swift/">swift</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -192,6 +206,10 @@ Optionals可选类型是什么？在Objective-C中，任意一个类型在有值
     <h3 class="widget-title">Recents</h3>
     <div class="widget recents">
       <ul>
+        
+          <li>
+            <a href="/2015/03/17/OC到swift的迁移/">OC到swift的迁移</a>
+          </li>
         
           <li>
             <a href="/2015/03/10/Optional和Optional Casting的一些理解/">Optional， Optional Casting的一些理解</a>
@@ -208,7 +226,7 @@ Optionals可选类型是什么？在Objective-C中，任意一个类型在有值
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 

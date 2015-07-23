@@ -65,6 +65,68 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-OC到swift的迁移" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/17/OC到swift的迁移/" class="article-date">
+  <time datetime="2015-03-16T17:23:19.000Z" itemprop="datePublished">2015-03-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/swift/">swift</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/17/OC到swift的迁移/">OC到swift的迁移</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>从OC转过来的，走过的路和填过的坑和直接学swift或者是其他语言转swift还是有很大不同的，这里结合实际，做一些不成熟的总结，可能OC的同学会很有感触。</p>
+<p>说的都是非常简单的东西，仅仅起一个引导的作用，要详细了解，还是仔细看苹果的文档。</p>
+<h2 id="init和init家族方法">init和init家族方法</h2><p>在OC中，总少不了init和其家族一堆的初始化方法。在swift中，首先写法就会比较奇怪，因为swift将OC中的方法都翻译过来了，大致就是保留方法前面的方法名，后面的变量放到括号里。</p>
+<p>但是这个init翻译过来有很大区别，在swift应该叫构造函数了，比如OC中的UIView</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">initWithFrame</span>:<span class="value">(CGRect)rect</span></span>;</span><br></pre></td></tr></table></figure>
+<p>在swift中就是：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">UIView</span><span class="params">(rect: CGRect)</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="setter和getter">setter和getter</h2><p>OC中，有相当一部分程序员喜欢在setter和getter中码代码，由于其必要性是很方便的，比如你对一个类的数据源赋值的时候，在setter中做相关更新UI方法的调用，是很方便的。因为不管是谁用这个类，是不可能忘记设置数据源的。</p>
+<p>getter则是做一定的处理再返回一个处理好的值给调用者。这里主要是两方面，一方面是检测getter，每当有对象调用getter，我就要做xxx处理，一方面是对返回的数据做一定的处理，比如我存的是一个float，我想做个四舍五入或者是什么处理再把数据给出去，但不影响本身的存储。等等。</p>
+<p><code>在swift中，没有了传统的setter和getter</code>,有的是：</p>
+<ul>
+<li>存储属性（Stored Properties）</li>
+<li>计算属性（Computed Properties）</li>
+<li>属性观察器（Property Observers）</li>
+<li>全局变量和局部变量（Global and Local Variables）</li>
+<li>类型属性（Type Properties）</li>
+</ul>
+<p>之前OC中的Setter中的一些写法可以迁移到Property Observers中，即willSet和DidSet方法</p>
+<p>而OC中的getter方法中一些写法可以迁移到Computed Properties中，甚至Computed Properties能做到更多，比如我遇到过的，我一个NSDate变量，每当我调用它的时候，我只想要用它的某个特定格式的转换过的字符串，这时候用它很方便。用Computed Properties定义一个属性，不存储数据，专门用于将储存的数据做一些计算或者处理，然后返回出来。</p>
+<h2 id="NSMutableArray和NSMutableDictionary">NSMutableArray和NSMutableDictionary</h2><p>在swift中，数组就只有Array，字典就只有Dictionary，是不是可变，就靠前面的let和var来区分了。</p>
+<h2 id="延迟加载">延迟加载</h2><p>在OC中，我们常常喜欢控制变量，让其延迟加载，提升效率和用户体验，在swift中，专门有个延迟存储属性，关键字@lazy，也可实现类似效果。</p>
+<p>to be continue</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/03/17/OC到swift的迁移/" data-id="cicgig7w200004ymj3bbxmx1k" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Optional和Optional Casting的一些理解" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/03/10/Optional和Optional Casting的一些理解/" class="article-date">
@@ -139,7 +201,7 @@
 <h2 id="使用as?_,_as,_as!">使用as? , as, as!</h2><p>这两个东西是主要用于cast（类型转换）。</p>
 <p>举例：</p>
 <p>FirstViewController继承自UIViewController，并有自己的一个变量topic</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FirstViewController</span>: <span class="typename">UIViewController &#123;</span></span></span><br><span class="line">	<span class="variable"><span class="keyword">var</span> topic</span>: String! = nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FirstViewController</span>: <span class="typename">UIViewController &#123;</span></span></span><br><span class="line">	<span class="variable"><span class="keyword">var</span> topic</span>: String? = nil</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在某个方法里</p>
 <figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let myVC = FirstViewController<span class="list">()</span></span><br><span class="line">presentViewController<span class="list">(<span class="keyword">myVC</span>, animated: true, </span><br><span class="line">completion: <span class="literal">nil</span>)</span></span><br></pre></td></tr></table></figure>
 <p>在使用presentedViewController属性来获取这个控制器，并访问topic属性时，怎么确定这个presentedViewController就是FirstViewController类型呢？</p>
@@ -155,7 +217,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/03/10/Optional和Optional Casting的一些理解/" data-id="cic52igj100003gmj11ubhh6c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/03/10/Optional和Optional Casting的一些理解/" data-id="cicgig7x700034ymj95ajtq0i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -175,7 +237,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/swift/">swift</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/swift/">swift</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -185,6 +247,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget recents">
       <ul>
+        
+          <li>
+            <a href="/2015/03/17/OC到swift的迁移/">OC到swift的迁移</a>
+          </li>
         
           <li>
             <a href="/2015/03/10/Optional和Optional Casting的一些理解/">Optional， Optional Casting的一些理解</a>
@@ -201,7 +267,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 

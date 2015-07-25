@@ -65,6 +65,51 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-abc" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/25/abc/" class="article-date">
+  <time datetime="2015-03-25T08:59:37.000Z" itemprop="datePublished">2015-03-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/iOS/">iOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/25/abc/">abc</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>|Purpose |Classes/Protocols|Description|</p>
+<p>|Top-level containment and management|UICollectionView UICollectionViewController||A UICollectionView object defines the visible area for your collection view’s content. This class descends from UIScrollView and can contain a large scrollable area as needed. This class also facilitates the presentation of your data based on the layout information it receives from its layout object.|<br>A UICollectionViewController object provides view controller–level management support for a collection view. Its use is optional.|</p>
+<p>|Content management | UICollectionViewDataSource protocol<br>UICollectionViewDelegate protocol| The data source object is the most important object associated with the collection view and is one that you must provide. The data source manages the content of the collection view and creates the views needed to present that content. To implement a data source object, you must create an object that conforms to the UICollectionViewDataSource protocol.</p>
+<p>The collection view delegate object lets you intercept interesting messages from the collection view and customize the view’s behavior. For example, you use a delegate object to track the selection and highlighting of items in the collection view. Unlike the data source object, the delegate object is optional.<br>For information about how to implement the data source and delegate objects, see Designing Your Data Source and Delegate.|</p>
+<p>Presentation<br>UICollectionReusableView<br>UICollectionViewCell<br>All views displayed in a collection view must be instances of the UICollectionReusableView class. This class supports a recycling mechanism in use by collection views. Recycling views (instead of creating new ones) improves performance in general and especially improves it during scrolling.<br>A UICollectionViewCell object is a specific type of reusable view that you use for your main data items.<br>Layout<br>UICollectionViewLayout<br>UICollectionViewLayoutAttributes<br>UICollectionViewUpdateItem<br>Subclasses of UICollectionViewLayout are referred to as layout objects and are responsible for defining the location, size, and visual attributes of the cells and reusable views inside a collection view.<br>During the layout process, a layout object creates layout attribute objects (instances of the UICollectionViewLayoutAttributes class) that tell the collection view where and how to display cells and reusable views.<br>The layout object receives instances of the UICollectionViewUpdateItem class whenever data items are inserted, deleted, or moved within the collection view. You never need to create instances of this class yourself.<br>For more information about the layout object, see The Layout Object Controls the Visual Presentation.<br>Flow layout<br>UICollectionViewFlowLayout<br>UICollectionViewDelegateFlowLayout protocol<br>The UICollectionViewFlowLayout class is a concrete layout object that you use to implement grids or other line-based layouts. You can use the class as-is or in conjunction with the flow delegate object, which allows you to customize the layout information dynamically.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/03/25/abc/" data-id="ciciu97vt0000kdmjm8y567l2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-OC到swift的迁移" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/03/17/OC到swift的迁移/" class="article-date">
@@ -117,7 +162,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/03/17/OC到swift的迁移/" data-id="cicgig7w200004ymj3bbxmx1k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/03/17/OC到swift的迁移/" data-id="ciciu97y10006kdmj0ttwmpmn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -217,7 +262,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/03/10/Optional和Optional Casting的一些理解/" data-id="cicgig7x700034ymj95ajtq0i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/03/10/Optional和Optional Casting的一些理解/" data-id="ciciu97xl0003kdmjnent30f8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -237,7 +282,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/swift/">swift</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/">iOS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/swift/">swift</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -247,6 +292,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget recents">
       <ul>
+        
+          <li>
+            <a href="/2015/03/25/abc/">abc</a>
+          </li>
         
           <li>
             <a href="/2015/03/17/OC到swift的迁移/">OC到swift的迁移</a>
@@ -267,7 +316,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 
